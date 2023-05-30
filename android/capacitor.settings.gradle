@@ -2,8 +2,8 @@
 include ':capacitor-android'
 project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
 
-include ':byteowls-capacitor-sms'
-project(':byteowls-capacitor-sms').projectDir = new File('../node_modules/@byteowls/capacitor-sms/android')
+include ':capacitor-device'
+project(':capacitor-device').projectDir = new File('../node_modules/@capacitor/device/android')
 
-include ':capacitor-sms-retriever'
-project(':capacitor-sms-retriever').projectDir = new File('../node_modules/capacitor-sms-retriever/android')
+include ':capacitor-preferences'
+project(':capacitor-preferences').projectDir = new File('../node_modules/@capacitor/preferences/android')

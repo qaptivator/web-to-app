@@ -9,8 +9,8 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
-    implementation project(':byteowls-capacitor-sms')
-    implementation project(':capacitor-sms-retriever')
+    implementation project(':capacitor-device')
+    implementation project(':capacitor-preferences')
 
 }
 
