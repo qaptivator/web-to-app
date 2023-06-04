@@ -74,7 +74,6 @@ dist
 # Capacitor generate
 android
 ios
-capacitorold.config.json
 
 # vuepress build output
 .vuepress/dist
