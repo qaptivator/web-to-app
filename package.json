@@ -1,5 +1,5 @@
 {
-  "name": "smsg",
+  "name": "web-to-app",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -28,6 +28,7 @@
     "vue-template-compiler": "^2.7.10"
   },
   "devDependencies": {
+    "@capacitor/assets": "^2.0.4",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/tailwindcss": "^5.3.3",
     "postcss": "^8.4.17"
