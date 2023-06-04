@@ -13,7 +13,7 @@
 <script>
 import appConfig from "../config.json";
 export default {
-  name: "IndexPage", // IndexPage, appConfig.name
+  name: "IndexPage", // IndexPage, appConfig.namee
   data() {
     return {
       url: appConfig.url,
