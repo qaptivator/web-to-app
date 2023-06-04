@@ -71,6 +71,10 @@ typings/
 # Nuxt generate
 dist
 
+# Capacitor generate
+android
+ios
+
 # vuepress build output
 .vuepress/dist
 
