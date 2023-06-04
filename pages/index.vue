@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white" style="height: calc(100vh - 100px)">
-    <div v-show="loading"></div>
+  <div class="bg-white" style="height: 100vh">
+    <div v-show="loading">loading</div>
     <iframe
       :src="url"
       v-show="!loading"
@@ -13,7 +13,7 @@
 <script>
 import appConfig from "../config.json";
 export default {
-  name: "IndexPage", // IndexPage, appConfig.namee
+  name: "IndexPage",
   data() {
     return {
       url: appConfig.url,
@@ -32,22 +32,31 @@ export default {
       this.$refs["iframe"].contentWindow.postMessage(data, "*");
     },
     receiveData(event) {
-      if (!event) return;
+      if (!event || !event.data.action) return;
 
-      const data = event.data;
-      if (!data.action) return;
+      const data = event.data.data;
+      const action = event.data.action;
 
-      switch (data.action) {
+      switch (action) {
         case "ready":
           this.ready();
           break;
         case "deviceId":
-          this.sendData("ti13-jk8l-pwhn-291k");
+          this.respondAction(action, "ti13-jk8l-pwhn-291k");
+          break;
+        case "sendSMS":
+          this.respondAction(
+            action,
+            `the sms was sucesfully sent: ${data.message}`
+          );
           break;
       }
     },
     ready() {
       this.loading = false;
+    },
+    respondAction(action, data) {
+      this.sendData({ action, data });
     },
   },
 };

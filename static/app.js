@@ -1,4 +1,4 @@
-import { EventEmitter } from "https://cdn.jsdelivr.net/npm/events@3.3.0/events.min.js";
+import { EventEmitter } from "https://cdn.jsdelivr.net/npm/events@3.3.0/+esm";
 let emitter = new EventEmitter();
 
 // event data format
@@ -31,36 +31,53 @@ class _WEBTOAPP {
     emitter.emit("messageReceived", event);
   }
 
-  /*async queryAction(action, ...args) {
-    this.sendData({ action: actionName, data: args });
-
-    for await (const event of on(emitter, "dataReceived")) {
-      let data = event.data;
-
-      if (data.action === action) {
-        return data;
-      }
-    }
-  }*/
-
-  async queryAction(action, ...args) {
-    return new Promise(resolve, reject => {
-      this.sendData({ action: actionName, data: args });
-
-      emitter.on("messageReceived", event => {
-        if (event.data.action === action) {
-          emitter.removeListener("messageReceived", this);
-          resolve(event.data);
-        }
-      });
+  async queryAction(action, data) {
+    let thisListener = null;
+    return new Promise(resolve => {
+      this.sendData({ action, data });
+      emitter.on(
+        "messageReceived",
+        (thisListener = event => {
+          if (event.data.action === action) {
+            emitter.removeListener("messageReceived", thisListener);
+            resolve(event.data.data);
+          }
+        })
+      );
     });
   }
 
+  // exmaple of function to communicate between iframe and application
   async deviceId() {
-    return await queryAction("deviceId");
+    // iteration 1
+    /*this.queryAction("deviceId").then(receivedData => {
+      return receivedData.data;
+    });*/
+
+    // iteration 2
+    //const receivedData = await this.queryAction("deviceId");
+    //return receivedData.data;
+
+    // iteration 3
+    /*return await this.queryAction("deviceId").then(function (receivedData) {
+      return receivedData.data;
+    });*/
+
+    // iteration 4
+    return await this.queryAction("deviceId");
+  }
+
+  // example of function with arguments
+  async sendSMS(message) {
+    return await this.queryAction("sendSMS", { message });
   }
 }
 
 let web2app = new _WEBTOAPP();
 let id = await web2app.deviceId();
 console.log(id);
+
+let success = await web2app.sendSMS("hello world");
+console.log(success);
+
+export default _WEBTOAPP;
