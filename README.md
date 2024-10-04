@@ -4,6 +4,7 @@ A Capacitor-based library that turns any website into a mobile or desktop app, a
 This serves as an API gateway between native Capacitor JS APIs and your website.<br>
 This library also makes it so you don't have to recompile the app on every webstie deployment, it reloads automatically.<br>
 You don't need to wait several days until the distribution service verifies your app. _(But other changes such as app title or icon will require recompilation)_<br>
+This library is also easier to setup than Capacitor: you just take the native app, configure a few things and you are good to go. Everything is ready for compilation.<br>
 This library will also support cross-platformness of Capacitor, because it's built on top of Capacitor.<br>
 Currently supported platforms:
 - [x] Android
