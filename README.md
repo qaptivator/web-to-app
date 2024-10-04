@@ -12,7 +12,7 @@ Currently supported platforms:
 - [ ] Windows
 - [ ] MacOS
 - [ ] Linux
-<br>
+
 **This library is still work in progress, and it would need a total overhaul. It is very early in the development.**
 
 # FAQ
